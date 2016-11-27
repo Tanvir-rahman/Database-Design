@@ -1,0 +1,25 @@
+ 1. select * from customer where invoiceid =(select invoiceid from invoice where totalamount = (select max(totalamount) from invoice))
+
+
+2.select * from purchase where invoiceid in ( select invoiceid from invoice where invoiceid in ( select invoiceid from customer where custid in (2,3)))
+
+
+3.  select * from food where price=(select max(price) from food 
+                             where price<(select max(price) from food
+                                  where price<(select max(price) from food)))
+
+4. select * from accessories order by price asc
+
+5. select invoice.*,purchase.purchaseid,issuedate from invoice,purchase where invoice.invoiceId=purchase.invoiceId
+
+6. select sum(s.salary)+sum(m.salary)"TOTAL SALARY OF EMPLOYEE" from salesman s,manager m
+
+  
+7.select * from manager where managerId=(select managerId from invoice group by managerId having count(*)=(select max(count(*)) from invoice group by managerId))
+
+8. select * from accessories where price>(select avg(price) from accessories)
+
+9. select max(salary)"Maximum Salary" from salesman
+
+
+10. select s.storeName,c.categoryId from store s,category c where s.storeId=c.storeId and c.categoryId in((select categoryId from cloth where colorId=(select colorId from color where colorName='GREEN')),(select categoryId from accessories where accessoriesId=703))

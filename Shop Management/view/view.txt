@@ -1,0 +1,21 @@
+VIEW:
+
+1.create view BILL_DETAIL as select invoice.invoiceid,purchasedescription,totalamount,issuedate from invoice,purchase where invoice.invoiceId=purchase.invoiceId
+
+select * from bill_detail
+
+2.  create view store_category_name as select s.storeName,c.categoryId from store s,category c where s.storeId=c.storeId and c.categoryId in((select categoryId from cloth where colorId=(select colorId from color where colorName='GREEN')),(select categoryId from accessories where accessoriesId=703))
+
+select * from store_category_name
+
+ 3. create view  max_bill_manager as select * from manager where managerId=(select managerId from invoice group by managerId having count(*)=(select max(count(*)) from invoice group by managerId))
+
+   select * from max_bill_manager
+
+4. create view customer_detail as select * from customer
+
+   select * from customer_detail
+
+5. create view salesman_detail as select * from salesman order by salary asc
+
+   select * from salesman_detail

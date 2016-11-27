@@ -1,0 +1,81 @@
+create table invoice(
+invoiceId number(7),
+description varchar(100),
+totalAmount number(10),
+managerId number(7),
+CONSTRAINT pk_invoice PRIMARY KEY (invoiceId),
+CONSTRAINT fk_invoice FOREIGN KEY(managerId) references manager(managerId)
+);
+
+create table manager(
+managerId number(7),
+FirstName varchar(10),
+lastName varchar(10),
+salary number(10),
+CONSTRAINT pk_manager PRIMARY KEY (managerId)
+)
+
+create table salesman(
+salesmanId number(7),
+firstName varchar(10),
+lastName varchar(10)
+salary number(10),
+managerId number(7),
+categoryId number(7),
+CONSTRAINT pk_salesman PRIMARY KEY (salesmanId),
+CONSTRAINT fk_salesman FOREIGN KEY(managerId) references manager(managerId),
+CONSTRAINT fk_salesman FOREIGN KEY(categoryId) references category(categoryId)
+)
+
+create table category(
+categoryId number(7),
+categoryName varchar(20),
+storeId number(7),
+CONSTRAINT pk_category PRIMARY KEY(categoryId),
+CONSTRAINT fk_category FOREIGN KEY(storeId) references store(storeId)
+)
+
+create table store(
+storeId number(7),
+storeName varchar(20),
+storeLoc varchar(20),
+CONSTRAINT pk_store PRIMARY KEY(storeId)
+)
+
+create table food(
+foodId number(7),
+foodName varchar(20),
+mfg varchar(10),
+exp varchar(10),
+price number(10),
+categoryId number(7),
+CONSTRAINT pk_food PRIMARY KEY (foodId),
+CONSTRAINT fk_food FOREIGN KEY(categoryId) references category(categoryId)
+)
+
+create table accessories(
+accessoriesId number(7),
+accessoriesName varchar(20),
+price number(10),
+categoryId number(7),
+CONSTRAINT pk_accessories PRIMARY KEY (accessoriesId),
+CONSTRAINT fk_accesoories FOREIGN KEY(categoryId) references category(categoryId)
+)
+
+create table cloth(
+clothId number(7),
+clothName varchar(20),
+price number(10),
+colorId number(7),
+sizeId number(7),
+categoryId number(7),
+CONSTRAINT pk_cloth PRIMARY KEY (clothId),
+CONSTRAINT fk_cloth FOREIGN KEY(colorId) references cloth(clothId),
+CONSTRAINT fk_cloth FOREIGN KEY(sizeId) references size(sizeId)
+)
+
+create table color(
+colorId number(7),
+colorName varchar(),
+)
+
